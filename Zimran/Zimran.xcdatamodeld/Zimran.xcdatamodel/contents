@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Repositories" representedClassName="Repositories" syncable="YES" codeGenerationType="class">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="forks_count" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="owner" optional="YES" attributeType="String"/>
+        <attribute name="stargazers_count" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="origin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User_repo" inverseName="repository" inverseEntity="User_repo"/>
+    </entity>
+    <entity name="User_repo" representedClassName="User_repo" syncable="YES" codeGenerationType="class">
+        <attribute name="avatar_url" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="repository" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Repositories" inverseName="origin" inverseEntity="Repositories"/>
+    </entity>
+</model>
