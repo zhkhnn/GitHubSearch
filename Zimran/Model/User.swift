@@ -23,3 +23,11 @@ struct User: Decodable, Identifiable{
         self.avatar_url = try container.decode(String.self, forKey: .avatar_url)
     }
 }
+extension User: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(login, forKey: .login)
+        try container.encode(avatar_url, forKey: .avatar_url)
+    }
+}

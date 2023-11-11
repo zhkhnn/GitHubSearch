@@ -11,7 +11,7 @@ struct RepositoryDetailView: View {
     @StateObject private var viewModel = UserViewModel()
     let repository: Repository
     let historyModel: HistoryModel
-    @Binding var isViewed: Bool
+    @EnvironmentObject var history: HistoryModel
     var body: some View {
         NavigationView{
             VStack{
@@ -25,18 +25,17 @@ struct RepositoryDetailView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: RepositoryListView(viewModel: viewModel, repo: repository.owner, history: historyModel)) {
+                NavigationLink(destination: RepositoryListView(viewModel: viewModel, repo: repository.owner, history: historyModel).navigationBarBackButtonHidden(true)) {
                     Text(repository.owner.login)
                         .font(Font.headline.weight(.light))
                         .foregroundColor(Color.black)
                 }
                 Spacer()
                 Button(action: {
-                    self.isViewed = true
-                    print("toggled")
                     historyModel.addToHistory(repository)
+                    historyModel.toggleLikedStatus(for: repository)
                 }){
-                    Image(systemName: self.isViewed == true ? "heart.fill" : "plus")
+                    Image(systemName: historyModel.isRepositoryLiked(repository: repository) ? "heart.fill" : "plus")
                     
                 }
                 

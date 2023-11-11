@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RepositoryRowView: View {
     let repository: Repository
-    @State var isViewed = false;
+    @EnvironmentObject var history: HistoryModel
 
 
     var body: some View {
@@ -33,7 +33,7 @@ struct RepositoryRowView: View {
                 Text("\(repository.forks_count)")
                     .foregroundColor(.gray)
                     .lineLimit(nil)
-                Image(systemName: isViewed ? "heart.fill" : "plus")
+                Image(systemName: history.contains(repository) ? "heart.fill" : "plus")
             }
         }
         .padding(10)

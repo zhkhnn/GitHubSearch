@@ -41,5 +41,15 @@ struct Repository: Identifiable, Decodable {
         self.owner = try container.decode(User.self, forKey: .owner)
     }
 }
-
+extension Repository: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(stargazers_count, forKey: .stargazers_count)
+        try container.encode(forks_count, forKey: .forks_count)
+        try container.encode(created_at, forKey: .created_at)
+        try container.encode(owner, forKey: .owner)
+    }
+}
 

@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @ObservedObject var historyModel: HistoryModel
+    @StateObject var historyModel: HistoryModel
     var body: some View {
         NavigationView {
                     List(historyModel.history) { repo in
                         Text("\(repo.name)")
                     }
                     .navigationTitle("Repository History")
+                    .onAppear{
+                        historyModel.load()
+                    }
                 }
     }
 }

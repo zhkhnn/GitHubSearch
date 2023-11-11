@@ -11,9 +11,8 @@ struct ContentView: View {
     @StateObject private var viewModel = RepositoryViewModel()
     @State private var searchText = ""
     @State private var isListing = false
-    @State var isViewed = false;
-    @ObservedObject private var historyModel = HistoryModel()
-    @State private var viewedRepositoryID: Int? = nil
+    @StateObject private var historyModel = HistoryModel()
+//    @State private var viewedRepositoryID: Int? = nil
     @State private var sortOption: RepositoryViewModel.sortOptions = .stars
     var body: some View {
         NavigationView{
@@ -53,9 +52,9 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
                 ScrollView{
-                    Text("Founded \(viewModel.searchResults.total_count ?? 0) repositories")
+                    Text(viewModel.searchResults.total_count == 0 ? "Please, check for spelling of your repository name" : "Founded \(viewModel.searchResults.total_count ?? 0) repositories")
                     ForEach(Array(viewModel.searchResults.items ?? []), id: \.id) { repository in
-                        NavigationLink(destination: RepositoryDetailView(repository: repository, historyModel: historyModel, isViewed: $isViewed)){
+                        NavigationLink(destination: RepositoryDetailView(repository: repository, historyModel: historyModel)){
                             RepositoryRowView(repository: repository)
                         }
                     }
@@ -81,6 +80,7 @@ struct ContentView: View {
             }
             
         }
+        .environmentObject(historyModel)
         
     }
 }
