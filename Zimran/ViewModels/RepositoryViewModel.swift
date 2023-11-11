@@ -74,10 +74,7 @@ class RepositoryViewModel: ObservableObject {
             }
             return false
     }
-    @MainActor
-    func fetchNextSetOfRepositories(){
-        page += 1
-    }
+
     
 }
     

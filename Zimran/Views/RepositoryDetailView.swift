@@ -12,24 +12,44 @@ struct RepositoryDetailView: View {
     let repository: Repository
     let historyModel: HistoryModel
     @EnvironmentObject var history: HistoryModel
+    private let screenWidth = UIScreen.main.bounds.width
     var body: some View {
         NavigationView{
             VStack{
-                Group{
-                    Text("Repository name: \(repository.name)")
-                    Text("Repository date: \(formatDate(repository.created_at))")
-                    Text("Repository stars: \(repository.stargazers_count)")
-                    Text("Repository forks: \(repository.forks_count)")
+                Section(header: Text("Repository information").font(.system(size: 20))
+                    .fontWeight(.bold)){
+                    Group{
+                        Text("Repository name: \(repository.name)")
+                        Text("Repository date: \(formatDate(repository.created_at))")
+                        Text("Repository stars: \(repository.stargazers_count)")
+                        Text("Repository forks: \(repository.forks_count)")
+                    }
+                    .padding(10)
+                    
                 }
-                .padding(10)
+                
                 
                 Spacer()
-                
-                NavigationLink(destination: RepositoryListView(viewModel: viewModel, repo: repository.owner, history: historyModel).navigationBarBackButtonHidden(true)) {
-                    Text(repository.owner.login)
-                        .font(Font.headline.weight(.light))
-                        .foregroundColor(Color.black)
+                Section(header: Text("Owner information").font(.system(size: 20))
+                    .fontWeight(.bold)){
+                    HStack{
+                        AsyncImage(url: URL(string: repository.owner.avatar_url))
+                            .frame(width: 200,
+                                                       height: 200,
+                                                       alignment: .center)
+                                        .background(Color.gray)
+                                        .clipShape(Circle())
+                                        .overlay(Circle().stroke(Color.blue, lineWidth: 1))
+                        NavigationLink(destination: RepositoryListView(viewModel: viewModel, repo: repository.owner, history: historyModel).navigationBarBackButtonHidden(true)) {
+                            Text(repository.owner.login)
+                                .font(Font.headline.weight(.light))
+                                .foregroundColor(Color.black)
+                        }
+                    }
                 }
+                
+                
+                
                 Spacer()
                 Button(action: {
                     historyModel.addToHistory(repository)
@@ -41,10 +61,7 @@ struct RepositoryDetailView: View {
                 
                 Spacer()
                 
-                AsyncImage(url: URL(string: repository.owner.avatar_url))
-                    .frame(width: 300, height: 300)
-                                .background(Color.gray)
-                                .clipShape(Circle())
+                
                 
             }
             
