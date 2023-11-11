@@ -9,18 +9,32 @@ import Foundation
 import Combine
 
 class APIService {
-    static let shared = APIService()
-    func getUsers(perPage: Int = 30, sinceId: Int? = nil) -> AnyPublisher<[User], Error> {
-        var components = URLComponents(string: "https://api.github.com/users")!
-        components.queryItems = [
-            URLQueryItem(name: "per_page", value: "\(perPage)"),
-            URLQueryItem(name: "since", value: (sinceId != nil) ? "\(sinceId!)" : nil)
-        ]
+    @Published var searchResults: SearchResult = SearchResult()
+
+    func search(for query: String){
+        let url = URL(string: "https://api.github.com/search/repositories?q=\(query)")!
         
-        let request = URLRequest(url: components.url!, timeoutInterval: 5)
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .map(\.data)
-            .decode(type: [User].self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let results = try decoder.decode(SearchResult.self, from: data)
+                    DispatchQueue.main.async {
+                        self.searchResults = results
+                        self.searchResults.total_count = results.total_count
+                    }
+                    
+                } catch {
+                    print(error)
+                }
+            }
+            
+        }
+        
+        task.resume()
     }
 }

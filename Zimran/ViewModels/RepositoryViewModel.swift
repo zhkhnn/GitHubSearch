@@ -11,12 +11,9 @@ class RepositoryViewModel: ObservableObject {
     enum sortOptions{
         case date, stars, forks
     }
-    private var page = 1
     @Published var searchResults: SearchResult = SearchResult()
-    @Published private var currentPage: Int = 1
-    private var canLoadMorePages = true
-    @Published var viewedRepositoryLinks = Set<String>()
     @Published var filteredRepo: [Repository] = []
+    
     private var repos: [Repository] {
         filteredRepo.isEmpty ? searchResults.items! : filteredRepo
     }
@@ -40,7 +37,6 @@ class RepositoryViewModel: ObservableObject {
                         self.searchResults.total_count = results.total_count
                     }
                     
-//                    self.currentPage += 1
                 } catch {
                     print(error)
                 }
