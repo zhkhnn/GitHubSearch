@@ -79,6 +79,14 @@ struct ContentView: View {
                     }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationLink(destination: GithubLoginView()) {
+                        Text("Login")
+                            .foregroundColor(.black)
+                    }
+                }
+            }
             .accentColor(.black)
 
             .background(Color(red: 180/255, green: 173/255, blue: 163/255))

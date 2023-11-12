@@ -5,22 +5,26 @@ struct GithubLoginView: View {
     @State private var isLogged = false
 
     var body: some View {
-        if isLogged {
-            ContentView()
-        } else {
-            Button("Login with GitHub") {
-                performGitHubLogin()
-                print("tapped")
-                print(isLogged)
+        VStack{
+            if isLogged {
+                ContentView()
+            } else {
+                Button("Login with GitHub") {
+                    performGitHubLogin()
+                    print("tapped")
+                    print(isLogged)
+                }
+                .padding()
             }
-            .padding()
         }
+        
+        
     }
 
     private func performGitHubLogin() {
         let oauthswift = OAuth2Swift(
             consumerKey:    "1f5c31cbadf064c8dc39",
-            consumerSecret: "b5b08d330d88a4889b59f5761a5ce47b1e146357",
+            consumerSecret: "9258f67b036a90b2602909fc4bfe477b4bd541f6",
             authorizeUrl: "https://github.com/login/oauth/authorize",
             accessTokenUrl: "https://github.com/login/oauth/access_token",
             responseType: "code"
@@ -28,13 +32,15 @@ struct GithubLoginView: View {
         oauthswift.accessTokenBasicAuthentification = true
 
         oauthswift.authorize(
-                    withCallbackURL: URL(string: "Zimran://callback/")!,
+                    withCallbackURL: URL(string: "Zimran://oauth/github/callback/")!,
                     scope: "user",
                     state: "GITHUB"){ result in
                         switch result {
                         case .success(let (credential, _, _)):
                             print("Access Token: \(credential.oauthToken)")
-                            self.isLogged = true
+                            DispatchQueue.main.async {
+                                                    self.isLogged = true
+                                                }
 
                             oauthswift.client.get(
                                 "https://api.github.com/user"){ result in
@@ -58,7 +64,7 @@ struct GithubLoginView: View {
 struct GitHubLoginApp: App {
     var body: some Scene {
         WindowGroup {
-            GithubLoginView()
+            ContentView()
         }
     }
 }
