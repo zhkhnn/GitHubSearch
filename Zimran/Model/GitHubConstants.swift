@@ -14,5 +14,5 @@ struct GithubConstants {
     static let SCOPE = "read:user,user:email"
     static let TOKENURL = "https://github.com/login/oauth/access_token"
 //    5ff87e573c01cf7226be4fa7b7f2ed009f53b927
-    
+
 }

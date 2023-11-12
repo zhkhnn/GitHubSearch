@@ -11,6 +11,7 @@ struct GithubLoginView: View {
             Button("Login with GitHub") {
                 performGitHubLogin()
                 print("tapped")
+                print(isLogged)
             }
             .padding()
         }
@@ -24,22 +25,23 @@ struct GithubLoginView: View {
             accessTokenUrl: "https://github.com/login/oauth/access_token",
             responseType: "code"
         )
+        oauthswift.accessTokenBasicAuthentification = true
+
         oauthswift.authorize(
-                    withCallbackURL: URL(string: "Zimran://")!,
+                    withCallbackURL: URL(string: "Zimran://callback/")!,
                     scope: "user",
-                    state: "your_state",
-                    completionHandler: { result in
+                    state: "GITHUB"){ result in
                         switch result {
                         case .success(let (credential, _, _)):
                             print("Access Token: \(credential.oauthToken)")
-                            
+                            self.isLogged = true
+
                             oauthswift.client.get(
                                 "https://api.github.com/user"){ result in
                                     switch result {
                                     case .success(let response):
-                                        self.isLogged = true
                                         let dataString = response.string
-                                        print(dataString)
+                                        print(self.isLogged)
                                     case .failure(let error):
                                         print(error)
                                     }
@@ -48,15 +50,15 @@ struct GithubLoginView: View {
                             print("Error: \(error.localizedDescription)")
                         }
                     }
-                )
+                
     }
 }
 
-
+@main
 struct GitHubLoginApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GithubLoginView()
         }
     }
 }

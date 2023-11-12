@@ -7,7 +7,6 @@
 
 import SwiftUI
 import OAuthSwift
-@main
 struct ZimranApp: App {
     var body: some Scene {
         WindowGroup {
@@ -16,4 +15,10 @@ struct ZimranApp: App {
     }
 
 }
-
+//func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//    if url.scheme == "Zimran" {
+//        OAuthSwift.handle(url: url)
+//    }
+//    return true
+//}
+//
