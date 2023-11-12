@@ -11,8 +11,8 @@ struct ContentView: View {
     @StateObject private var viewModel = RepositoryViewModel()
     @State private var searchText = ""
     @State private var isListing = false
+    @State var nextIndex = 1
     @StateObject private var historyModel = HistoryModel()
-//    @State private var viewedRepositoryID: Int? = nil
     @State private var sortOption: RepositoryViewModel.sortOptions = .stars
     var body: some View {
         NavigationView{
@@ -40,6 +40,7 @@ struct ContentView: View {
                     
                     Button(action: {
                         viewModel.search(for: searchText)
+                        viewModel.isLoading = true
                     }) {
                         Text("Search")
                             .foregroundColor(.white)
@@ -55,7 +56,13 @@ struct ContentView: View {
                     Text(viewModel.searchResults.total_count == 0 ? "Please, check for spelling of your repository name" : "Founded \(viewModel.searchResults.total_count ?? 0) repositories")
                     ForEach(Array(viewModel.searchResults.items ?? []), id: \.id) { repository in
                         NavigationLink(destination: RepositoryDetailView(repository: repository, historyModel: historyModel)){
+                            
                             RepositoryRowView(repository: repository)
+                        }
+                        .onAppear{
+                            if viewModel.hasReachedEnd(of: repository){
+                                viewModel.loadNextData(withQuery: searchText)
+                            }
                         }
                     }
                 }

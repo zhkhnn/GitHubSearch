@@ -29,5 +29,6 @@ extension User: Encodable {
         try container.encode(id, forKey: .id)
         try container.encode(login, forKey: .login)
         try container.encode(avatar_url, forKey: .avatar_url)
+        
     }
 }

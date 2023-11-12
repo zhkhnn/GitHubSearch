@@ -28,6 +28,7 @@ struct RepositoryListView: View {
                             Text("\(repository.stargazers_count)")
                                 .foregroundColor(.gray)
                                 .lineLimit(nil)
+                            Text("Followers:")
                         }
                         .padding(10)
                         .background(Color.clear)
@@ -39,6 +40,7 @@ struct RepositoryListView: View {
             }
             .task {
                 viewModel.getRepositories(for: repo.login)
+//                viewModel.getFollowers(for: repo.login)
             }
             .navigationTitle("\(repo.login)")
             .navigationBarBackButtonHidden(true)

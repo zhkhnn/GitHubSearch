@@ -35,6 +35,9 @@ struct RepositoryRowView: View {
                     .lineLimit(nil)
                 Image(systemName: history.contains(repository) ? "heart.fill" : "plus")
             }
+            .onAppear{
+                history.load()
+            }
         }
         .padding(10)
         .background(Color.clear)

@@ -13,6 +13,7 @@ class RepositoryViewModel: ObservableObject {
     }
     @Published var searchResults: SearchResult = SearchResult()
     @Published var filteredRepo: [Repository] = []
+    @Published var isLoading: Bool = false
     
     private var repos: [Repository] {
         filteredRepo.isEmpty ? searchResults.items! : filteredRepo
@@ -26,6 +27,7 @@ class RepositoryViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+        isLoading = true
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -33,8 +35,10 @@ class RepositoryViewModel: ObservableObject {
                     let decoder = JSONDecoder()
                     let results = try decoder.decode(SearchResult.self, from: data)
                     DispatchQueue.main.async {
+                        self.isLoading = false
                         self.searchResults = results
                         self.searchResults.total_count = results.total_count
+                        print("decoded")
                     }
                     
                 } catch {
@@ -73,6 +77,45 @@ class RepositoryViewModel: ObservableObject {
                 return true
             }
             return false
+    }
+    @MainActor func loadNextData(withQuery query: String) {
+        guard !isLoading else {
+            return
+        }
+
+        guard let totalCount = searchResults.total_count,
+              let currentCount = searchResults.items?.count,
+              currentCount < totalCount else {
+            return
+        }
+
+        let nextPage = (currentCount / 30) + 1
+        let url = URL(string: "https://api.github.com/search/repositories?q=\(query)&page=\(nextPage)")!
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+            isLoading = true
+
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let data = data {
+                    do {
+                        let decoder = JSONDecoder()
+                        let results = try decoder.decode(SearchResult.self, from: data)
+                        DispatchQueue.main.async {
+                            self.isLoading = false
+                            self.searchResults.items?.append(contentsOf: results.items ?? [])
+                            self.searchResults.total_count = results.total_count
+                            print("next page loaded")
+                        }
+
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+
+            task.resume()
     }
 
     

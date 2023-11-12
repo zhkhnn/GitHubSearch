@@ -25,6 +25,7 @@ struct RepositoryDetailView: View {
                         Text("Repository forks: \(repository.forks_count)")
                     }
                     .padding(10)
+                        
                     
                 }
                 
@@ -33,13 +34,20 @@ struct RepositoryDetailView: View {
                 Section(header: Text("Owner information").font(.system(size: 20))
                     .fontWeight(.bold)){
                     HStack{
-                        AsyncImage(url: URL(string: repository.owner.avatar_url))
+                        AsyncImage(url: URL(string: repository.owner.avatar_url)){
+                            image in
+                            image
+                                        .resizable()
+                                        .scaledToFill()
+                        }placeholder: {
+                            ProgressView()
+                        }
                             .frame(width: 200,
                                                        height: 200,
                                                        alignment: .center)
                                         .background(Color.gray)
                                         .clipShape(Circle())
-                                        .overlay(Circle().stroke(Color.blue, lineWidth: 1))
+                                        .overlay(Circle().stroke(Color.black, lineWidth: 1))
                         NavigationLink(destination: RepositoryListView(viewModel: viewModel, repo: repository.owner, history: historyModel).navigationBarBackButtonHidden(true)) {
                             Text(repository.owner.login)
                                 .font(Font.headline.weight(.light))

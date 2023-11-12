@@ -12,7 +12,7 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
                     List(historyModel.history) { repo in
-                        Text("\(repo.name)")
+                        Text("\(repo.owner.login)")
                     }
                     .navigationTitle("Repository History")
                     .onAppear{
