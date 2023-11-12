@@ -3,6 +3,7 @@ import OAuthSwift
 
 struct GithubLoginView: View {
     @State private var isLogged = false
+    
 
     var body: some View {
         VStack{
@@ -22,8 +23,9 @@ struct GithubLoginView: View {
                         }
                         .foregroundColor(.white)
                         .padding(15)
-                        .background(Color(red: 180/255, green: 173/255, blue: 163/255))
+                        .background(LinearGradient(gradient: Gradient(colors: [Color(red: 180/255, green: 173/255, blue: 163/255), Color(red: 120/255, green: 113/255, blue: 103/255)]), startPoint: .leading, endPoint: .trailing))
                         .cornerRadius(40)
+                        
                         Spacer()
                         Spacer()
                         Spacer()
