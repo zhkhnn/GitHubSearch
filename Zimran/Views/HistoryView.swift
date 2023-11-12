@@ -13,6 +13,9 @@ struct HistoryView: View {
     var body: some View {
         NavigationView {
             VStack{
+                if historyModel.history.isEmpty {
+                    Text("You didn't add any repository")
+                }
                 List {
                     ForEach(historyModel.history.suffix(20).reversed()) { repo in
                         Text("\(repo.owner.login)")

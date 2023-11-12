@@ -14,9 +14,11 @@ struct GithubLoginView: View {
                     print("tapped")
                     print(isLogged)
                 }
+                .foregroundColor(.white)
                 .padding()
             }
         }
+        .background(Color(red: 180/255, green: 173/255, blue: 163/255))
         
         
     }
@@ -60,7 +62,7 @@ struct GithubLoginView: View {
                     }
                 
     }
-    private func logOut() {
+    func logOut() {
             // Assuming OAuthSwiftClient is the client you obtained during login
             // Revoking the token might not be supported by all OAuth providers
             oauthswift.client.credential.oauthToken = ""

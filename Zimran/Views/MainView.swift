@@ -13,6 +13,7 @@ struct MainView: View {
     @State private var isListing = false
     @State var nextIndex = 1
     @StateObject private var historyModel = HistoryModel()
+    var logOut: GithubLoginView
     @State private var sortOption: RepositoryViewModel.sortOptions = .stars
     var body: some View {
         NavigationView{
@@ -75,14 +76,6 @@ struct MainView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: HistoryView(historyModel: historyModel)) {
                         Text("History")
-                            .foregroundColor(.black)
-                    }
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationLink(destination: GithubLoginView()) {
-                        Text("LogOut")
                             .foregroundColor(.black)
                     }
                 }
