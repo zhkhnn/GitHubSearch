@@ -18,22 +18,23 @@ struct HistoryView: View {
                 }
                 List {
                     ForEach(historyModel.history.suffix(20).reversed()) { repo in
-                        Text("\(repo.owner.login)")
-                            .padding(10)
+                        HStack{
+                            Text("\(repo.owner.login)")
+                                .padding(10)
+                        }
+                        
                     }
                     .onDelete(perform: delete)
                     .listStyle(GroupedListStyle())
                     .listRowInsets(EdgeInsets())
-                    .onAppear {
-                        historyModel.load()
-                    }
+                    
+                }
+                
+                .onAppear {
+                    historyModel.load()
                 }
             }
-            
-            
             .navigationTitle("Repository History")
-            
-            
             .navigationBarItems(trailing: EditButton().foregroundColor(.black))
             .background(Color(red: 191/255, green: 181/255, blue: 158/255))
         }

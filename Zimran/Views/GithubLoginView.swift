@@ -9,16 +9,31 @@ struct GithubLoginView: View {
             if isLogged {
                 ContentView()
             } else {
-                Button("Login with GitHub") {
-                    performGitHubLogin()
-                    print("tapped")
-                    print(isLogged)
+                ZStack{
+                    Image("meme")
+                                .resizable()
+                                .edgesIgnoringSafeArea(.all)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                                .clipped()
+                    VStack{
+                        Spacer()
+                        Button("Login with GitHub") {
+                            performGitHubLogin()
+                        }
+                        .foregroundColor(.white)
+                        .padding(15)
+                        .background(Color(red: 180/255, green: 173/255, blue: 163/255))
+                        .cornerRadius(40)
+                        Spacer()
+                        Spacer()
+                        Spacer()
+                    }
+                    
                 }
-                .foregroundColor(.white)
-                .padding()
+                
             }
         }
-        .background(Color(red: 180/255, green: 173/255, blue: 163/255))
+        
         
         
     }

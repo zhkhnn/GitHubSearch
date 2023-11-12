@@ -51,6 +51,7 @@
 		B333832A2B00F61800F031C5 /* OAuthSwift-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "OAuthSwift-master"; path = "../../../../../Downloads/OAuthSwift-master"; sourceTree = "<group>"; };
 		B333832C2B00F62000F031C5 /* OAuthSwift-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "OAuthSwift-master"; path = "../../../../Downloads/OAuthSwift-master"; sourceTree = "<group>"; };
 		B333832E2B010D6A00F031C5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B33383302B01254800F031C5 /* Zimran.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Zimran.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +85,7 @@
 		B33382AB2AF7F87100F031C5 /* Zimran */ = {
 			isa = PBXGroup;
 			children = (
+				B33383302B01254800F031C5 /* Zimran.entitlements */,
 				B333832C2B00F62000F031C5 /* OAuthSwift-master */,
 				B33382BC2AF7F89000F031C5 /* Views */,
 				B33382BB2AF7F88A00F031C5 /* ViewModels */,
@@ -358,6 +360,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Zimran/Zimran.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Zimran/Preview Content\"";
@@ -387,6 +390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Zimran/Zimran.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Zimran/Preview Content\"";

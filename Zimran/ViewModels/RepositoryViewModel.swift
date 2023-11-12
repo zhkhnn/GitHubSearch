@@ -106,7 +106,6 @@ class RepositoryViewModel: ObservableObject {
                             self.isLoading = false
                             self.searchResults.items?.append(contentsOf: results.items ?? [])
                             self.searchResults.total_count = results.total_count
-                            print("next page loaded")
                         }
 
                     } catch {

@@ -19,7 +19,6 @@ class HistoryModel: ObservableObject {
     func addToHistory(_ repository: Repository) {
         history.append(repository)
         save()
-        print("added")
     }
     func contains(_ repository: Repository) -> Bool {
             return history.contains { $0.id == repository.id }
@@ -41,7 +40,6 @@ class HistoryModel: ObservableObject {
             history = remove(from: history, repository: repository)
             likedRepositories.remove(repository.id)
             save()
-            print("removed")
         }
     func save() {
             do {
