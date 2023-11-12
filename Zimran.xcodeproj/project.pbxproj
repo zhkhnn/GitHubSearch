@@ -26,6 +26,7 @@
 		B33383242AFD46F900F031C5 /* GithubLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33383232AFD46F900F031C5 /* GithubLoginView.swift */; };
 		B33383272AFEBBCF00F031C5 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B33383262AFEBBCF00F031C5 /* OAuthSwift */; };
 		B333832B2B00F61800F031C5 /* OAuthSwift-master in Resources */ = {isa = PBXBuildFile; fileRef = B333832A2B00F61800F031C5 /* OAuthSwift-master */; };
+		B333832F2B010D6A00F031C5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333832E2B010D6A00F031C5 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		B33383232AFD46F900F031C5 /* GithubLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLoginView.swift; sourceTree = "<group>"; };
 		B333832A2B00F61800F031C5 /* OAuthSwift-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "OAuthSwift-master"; path = "../../../../../Downloads/OAuthSwift-master"; sourceTree = "<group>"; };
 		B333832C2B00F62000F031C5 /* OAuthSwift-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "OAuthSwift-master"; path = "../../../../Downloads/OAuthSwift-master"; sourceTree = "<group>"; };
+		B333832E2B010D6A00F031C5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				B333831B2AFAB99100F031C5 /* HistoryView.swift */,
 				B333831D2AFABA9100F031C5 /* RepositoryRowView.swift */,
 				B33383232AFD46F900F031C5 /* GithubLoginView.swift */,
+				B333832E2B010D6A00F031C5 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				B33382C22AF7F8BB00F031C5 /* RepositoryViewModel.swift in Sources */,
 				B33382AD2AF7F87100F031C5 /* ZimranApp.swift in Sources */,
 				B333831C2AFAB99100F031C5 /* HistoryView.swift in Sources */,
+				B333832F2B010D6A00F031C5 /* MainView.swift in Sources */,
 				B33383242AFD46F900F031C5 /* GithubLoginView.swift in Sources */,
 				B33382BE2AF7F89E00F031C5 /* Repository.swift in Sources */,
 				B33382FE2AF94CB800F031C5 /* CoreDataManager.swift in Sources */,

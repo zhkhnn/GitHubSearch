@@ -20,28 +20,30 @@ struct GithubLoginView: View {
         
         
     }
-
+    let oauthswift = OAuth2Swift(
+        consumerKey:    "1f5c31cbadf064c8dc39",
+        consumerSecret: "9258f67b036a90b2602909fc4bfe477b4bd541f6",
+        authorizeUrl: "https://github.com/login/oauth/authorize",
+        accessTokenUrl: "https://github.com/login/oauth/access_token",
+        responseType: "token"
+    )
     private func performGitHubLogin() {
-        let oauthswift = OAuth2Swift(
-            consumerKey:    "1f5c31cbadf064c8dc39",
-            consumerSecret: "9258f67b036a90b2602909fc4bfe477b4bd541f6",
-            authorizeUrl: "https://github.com/login/oauth/authorize",
-            accessTokenUrl: "https://github.com/login/oauth/access_token",
-            responseType: "code"
-        )
+        
         oauthswift.accessTokenBasicAuthentification = true
+        self.isLogged = true
 
         oauthswift.authorize(
-                    withCallbackURL: URL(string: "Zimran://oauth/github/callback/")!,
+                    withCallbackURL: URL(string: "Zimran://")!,
                     scope: "user",
                     state: "GITHUB"){ result in
+                        print("in ")
                         switch result {
                         case .success(let (credential, _, _)):
                             print("Access Token: \(credential.oauthToken)")
+                            print("Setting isLogged to true")
                             DispatchQueue.main.async {
                                                     self.isLogged = true
                                                 }
-
                             oauthswift.client.get(
                                 "https://api.github.com/user"){ result in
                                     switch result {
@@ -58,13 +60,19 @@ struct GithubLoginView: View {
                     }
                 
     }
+    private func logOut() {
+            // Assuming OAuthSwiftClient is the client you obtained during login
+            // Revoking the token might not be supported by all OAuth providers
+            oauthswift.client.credential.oauthToken = ""
+            self.isLogged = false
+        }
 }
 
 @main
 struct GitHubLoginApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GithubLoginView()
         }
     }
 }
