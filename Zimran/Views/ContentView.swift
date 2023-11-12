@@ -79,6 +79,8 @@ struct ContentView: View {
                     }
                 }
             }
+            .accentColor(.black)
+
             .background(Color(red: 180/255, green: 173/255, blue: 163/255))
             
         }

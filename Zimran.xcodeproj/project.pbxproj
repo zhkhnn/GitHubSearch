@@ -21,7 +21,6 @@
 		B33382CE2AF8F92F00F031C5 /* RepositoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33382CD2AF8F92F00F031C5 /* RepositoryListView.swift */; };
 		B33382FC2AF94B3000F031C5 /* Zimran.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B33382FA2AF94B3000F031C5 /* Zimran.xcdatamodeld */; };
 		B33382FE2AF94CB800F031C5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33382FD2AF94CB800F031C5 /* CoreDataManager.swift */; };
-		B33383002AF9FFF200F031C5 /* PagingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33382FF2AF9FFF200F031C5 /* PagingData.swift */; };
 		B333831A2AFAB8C300F031C5 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33383192AFAB8C300F031C5 /* History.swift */; };
 		B333831C2AFAB99100F031C5 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333831B2AFAB99100F031C5 /* HistoryView.swift */; };
 		B333831E2AFABA9100F031C5 /* RepositoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333831D2AFABA9100F031C5 /* RepositoryRowView.swift */; };
@@ -30,6 +29,7 @@
 		B33383242AFD46F900F031C5 /* GithubLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33383232AFD46F900F031C5 /* GithubLoginView.swift */; };
 		B33383272AFEBBCF00F031C5 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B33383262AFEBBCF00F031C5 /* OAuthSwift */; };
 		B33383292AFEBC0700F031C5 /* GitHubAuthWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33383282AFEBC0700F031C5 /* GitHubAuthWebView.swift */; };
+		B333832B2B00F61800F031C5 /* OAuthSwift-master in Resources */ = {isa = PBXBuildFile; fileRef = B333832A2B00F61800F031C5 /* OAuthSwift-master */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +48,6 @@
 		B33382CD2AF8F92F00F031C5 /* RepositoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListView.swift; sourceTree = "<group>"; };
 		B33382FB2AF94B3000F031C5 /* Zimran.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Zimran.xcdatamodel; sourceTree = "<group>"; };
 		B33382FD2AF94CB800F031C5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		B33382FF2AF9FFF200F031C5 /* PagingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingData.swift; sourceTree = "<group>"; };
 		B33383192AFAB8C300F031C5 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		B333831B2AFAB99100F031C5 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		B333831D2AFABA9100F031C5 /* RepositoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryRowView.swift; sourceTree = "<group>"; };
@@ -56,6 +55,8 @@
 		B33383212AFD44BA00F031C5 /* Authorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorization.swift; sourceTree = "<group>"; };
 		B33383232AFD46F900F031C5 /* GithubLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLoginView.swift; sourceTree = "<group>"; };
 		B33383282AFEBC0700F031C5 /* GitHubAuthWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAuthWebView.swift; sourceTree = "<group>"; };
+		B333832A2B00F61800F031C5 /* OAuthSwift-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "OAuthSwift-master"; path = "../../../../../Downloads/OAuthSwift-master"; sourceTree = "<group>"; };
+		B333832C2B00F62000F031C5 /* OAuthSwift-master */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "OAuthSwift-master"; path = "../../../../Downloads/OAuthSwift-master"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +90,7 @@
 		B33382AB2AF7F87100F031C5 /* Zimran */ = {
 			isa = PBXGroup;
 			children = (
+				B333832C2B00F62000F031C5 /* OAuthSwift-master */,
 				B33382BC2AF7F89000F031C5 /* Views */,
 				B33382BB2AF7F88A00F031C5 /* ViewModels */,
 				B33382BA2AF7F88000F031C5 /* Model */,
@@ -116,7 +118,6 @@
 				B33382BD2AF7F89E00F031C5 /* Repository.swift */,
 				B33382BF2AF7F8AF00F031C5 /* User.swift */,
 				B33382C72AF7FA5C00F031C5 /* SearchResult.swift */,
-				B33382FF2AF9FFF200F031C5 /* PagingData.swift */,
 				B33383192AFAB8C300F031C5 /* History.swift */,
 				B333831F2AFD440800F031C5 /* GitHubConstants.swift */,
 			);
@@ -137,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B33382AE2AF7F87100F031C5 /* ContentView.swift */,
+				B333832A2B00F61800F031C5 /* OAuthSwift-master */,
 				B33382CB2AF8D5CB00F031C5 /* RepositoryDetailView.swift */,
 				B33382CD2AF8F92F00F031C5 /* RepositoryListView.swift */,
 				B333831B2AFAB99100F031C5 /* HistoryView.swift */,
@@ -213,6 +215,7 @@
 			files = (
 				B33382B42AF7F87100F031C5 /* Preview Assets.xcassets in Resources */,
 				B33382B12AF7F87100F031C5 /* Assets.xcassets in Resources */,
+				B333832B2B00F61800F031C5 /* OAuthSwift-master in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +240,6 @@
 				B33383202AFD440800F031C5 /* GitHubConstants.swift in Sources */,
 				B33382FE2AF94CB800F031C5 /* CoreDataManager.swift in Sources */,
 				B33382CE2AF8F92F00F031C5 /* RepositoryListView.swift in Sources */,
-				B33383002AF9FFF200F031C5 /* PagingData.swift in Sources */,
 				B33382FC2AF94B3000F031C5 /* Zimran.xcdatamodeld in Sources */,
 				B33383292AFEBC0700F031C5 /* GitHubAuthWebView.swift in Sources */,
 				B33383222AFD44BA00F031C5 /* Authorization.swift in Sources */,
