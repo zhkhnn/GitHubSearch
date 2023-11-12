@@ -34,6 +34,15 @@ class HistoryModel: ObservableObject {
     func isRepositoryLiked(repository: Repository) -> Bool {
             return likedRepositories.contains(repository.id)
         }
+    func remove(from history: [Repository], repository: Repository) -> [Repository] {
+            return history.filter { $0.id != repository.id }
+        }
+    func removeFromHistory(_ repository: Repository) {
+            history = remove(from: history, repository: repository)
+            likedRepositories.remove(repository.id)
+            save()
+            print("removed")
+        }
     func save() {
             do {
                 let data = try JSONEncoder().encode(history)

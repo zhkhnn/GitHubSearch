@@ -47,7 +47,7 @@ struct ContentView: View {
                             .bold()
                     }
                     .padding(5)
-                    .background(.gray)
+                    .background(Color(red: 133/255, green: 135/255, blue: 134/255))
                     .buttonStyle(.bordered)
                     .cornerRadius(8)
                 }
@@ -75,16 +75,11 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: HistoryView(historyModel: historyModel)) {
                         Text("History")
+                            .foregroundColor(.black)
                     }
                 }
             }
-            if isListing{
-                Button(action: {
-                    viewModel.search(for: searchText)
-                }) {
-                    Text("Next")
-                }
-            }
+            .background(Color(red: 180/255, green: 173/255, blue: 163/255))
             
         }
         .environmentObject(historyModel)

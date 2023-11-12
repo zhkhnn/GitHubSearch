@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct RepositoryDetailView: View {
     @StateObject private var viewModel = UserViewModel()
     let repository: Repository
@@ -15,7 +16,7 @@ struct RepositoryDetailView: View {
     private let screenWidth = UIScreen.main.bounds.width
     var body: some View {
         NavigationView{
-            VStack{
+            VStack(){
                 Section(header: Text("Repository information").font(.system(size: 20))
                     .fontWeight(.bold)){
                     Group{
@@ -42,38 +43,46 @@ struct RepositoryDetailView: View {
                         }placeholder: {
                             ProgressView()
                         }
-                            .frame(width: 200,
-                                                       height: 200,
+                            .frame(width: 150,
+                                                       height: 150,
                                                        alignment: .center)
                                         .background(Color.gray)
                                         .clipShape(Circle())
                                         .overlay(Circle().stroke(Color.black, lineWidth: 1))
+                        Spacer()
                         NavigationLink(destination: RepositoryListView(viewModel: viewModel, repo: repository.owner, history: historyModel).navigationBarBackButtonHidden(true)) {
                             Text(repository.owner.login)
-                                .font(Font.headline.weight(.light))
+                                .font(.system(size: 24))
                                 .foregroundColor(Color.black)
                         }
+                        Spacer()
+                        
                     }
+                    .padding(.horizontal, 8)
                 }
-                
-                
-                
-                Spacer()
                 Button(action: {
-                    historyModel.addToHistory(repository)
-                    historyModel.toggleLikedStatus(for: repository)
+                    if historyModel.contains(repository){
+                        historyModel.removeFromHistory(repository)
+                    }
+                    else{
+                        historyModel.addToHistory(repository)
+                        historyModel.toggleLikedStatus(for: repository)
+                    }
+                    
                 }){
                     Image(systemName: historyModel.isRepositoryLiked(repository: repository) ? "heart.fill" : "plus")
+                        .foregroundColor(Color(red: 75/255, green: 59/255, blue: 64/255))
                     
                 }
-                
+                .frame(width: 200, height: 50)
+                .background(Color(red: 196/255, green: 177/255, blue: 174/255))
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color.black, lineWidth: 1))
                 Spacer()
-                
-                
-                
             }
-            
+            .background(Color(red: 196/255, green: 177/255, blue: 174/255))
         }
+        
         
     }
     

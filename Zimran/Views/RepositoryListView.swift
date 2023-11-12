@@ -13,10 +13,9 @@ struct RepositoryListView: View {
     let history: HistoryModel
     var body: some View {
         NavigationView{
-            VStack(alignment: .leading, spacing: 5){
                 ScrollView{
                     ForEach(viewModel.repositories){ repository in
-                        NavigationLink(destination: HistoryView(historyModel: history)){
+                        NavigationLink(destination: HistoryView(historyModel: history).navigationBarHidden(true)){
                             Text("\(repository.name)")
                                 .bold()
                                 .foregroundColor(.black)
@@ -25,25 +24,27 @@ struct RepositoryListView: View {
                             Spacer(minLength: 14.0)
                             Image(systemName: "star")
                                 .font(.system(size: 14.0))
+                                .foregroundColor(Color(red: 75/255, green: 59/255, blue: 64/255))
                             Text("\(repository.stargazers_count)")
-                                .foregroundColor(.gray)
+                                .foregroundColor(Color(red: 75/255, green: 59/255, blue: 64/255))
                                 .lineLimit(nil)
-                            Text("Followers:")
+                            Image(systemName: history.contains(repository) ? "heart.fill" : "")
+                                .foregroundColor(Color(red: 75/255, green: 59/255, blue: 64/255))
                         }
                         .padding(10)
                         .background(Color.clear)
                         .cornerRadius(10)
                         
                     }
-                }
+                
                 
             }
             .task {
                 viewModel.getRepositories(for: repo.login)
-//                viewModel.getFollowers(for: repo.login)
             }
             .navigationTitle("\(repo.login)")
             .navigationBarBackButtonHidden(true)
+            .background(Color(red: 202/255, green: 183/255, blue: 162/255))
         }
         
        
