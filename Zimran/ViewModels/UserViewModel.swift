@@ -33,26 +33,5 @@ class UserViewModel: ObservableObject {
         
         task.resume()
     }
-//    func getFollowers(for username: String) {
-//            let url = URL(string: "https://api.github.com/users/\(username)")!
-//
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "GET"
-//
-//            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//                if let data = data {
-//                    do {
-//                        let decoder = JSONDecoder()
-//                        let user = try decoder.decode(User.self, from: data)
-//                        DispatchQueue.main.async {
-//                            self.followerCount = user.followers
-//                        }
-//                    } catch {
-//                        print(error)
-//                    }
-//                }
-//            }
-//
-//            task.resume()
-//        }
+
 }
